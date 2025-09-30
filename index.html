@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth antialiased">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aryan Chourasia | Portfolio</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            accent: '#f97316',
+            dark: '#0b1220',
+            light: '#f6f7fb'
+          },
+          backgroundImage: {
+            'grid': "radial-gradient(circle at 1px 1px, rgba(0,0,0,.06) 1px, transparent 1px)",
+            'glow': "conic-gradient(from 180deg at 50% 50%, #3b82f6, #f97316, #22d3ee, #a78bfa, #3b82f6)"
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            blob: 'blob 14s ease-in-out infinite',
+            shine: 'shine 1.4s linear infinite',
+            pulseGlow: 'pulseGlow 2.4s ease-in-out infinite'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(-3px)' }, '50%': { transform: 'translateY(3px)' } },
+            blob: {
+              '0%,100%': { transform: 'translate(0px,0px) scale(1)' },
+              '25%': { transform: 'translate(10px,-10px) scale(1.05)' },
+              '50%': { transform: 'translate(-10px,10px) scale(0.98)' },
+              '75%': { transform: 'translate(5px,-5px) scale(1.02)' }
+            },
+            shine: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+            pulseGlow: { '0%,100%': { boxShadow: '0 0 0 0 rgba(59,130,246,0.4)' }, '50%': { boxShadow: '0 0 0 12px rgba(59,130,246,0)' } }
+          }
+        }
+      }
+    }
+  </script>
+
+  <meta name="description"
+    content="B.Tech IT student and aspiring developer — Python, Web, Java, Design. Projects, skills, education, and contact." />
+  <style>
+    .tilt:hover {
+      transform: perspective(900px) rotateX(5deg) rotateY(-6deg) scale(1.01);
+      transition: transform .4s ease;
+    }
+
+    .tilt {
+      transition: transform .4s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light text-gray-800 selection:bg-primary/20">
+
+  <!-- Backdrop blobs -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary/20 blur-3xl animate-blob"></div>
+    <div class="absolute top-1/3 -right-24 w-96 h-96 rounded-full bg-accent/20 blur-3xl animate-blob"
+      style="animation-delay: 4s"></div>
+    <div class="absolute bottom-0 left-1/4 w-[28rem] h-[28rem] rounded-full bg-cyan-300/20 blur-3xl animate-blob"
+      style="animation-delay: 8s"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <nav
+        class="mt-4 mb-3 flex items-center justify-between rounded-2xl border border-white/20 bg-white/60 backdrop-blur-md shadow-md">
+        <a href="#home" class="px-5 py-3 text-xl font-black tracking-widest text-primary">ARYAN</a>
+        <ul class="flex items-center gap-1">
+          <li><a href="#home" class="px-4 py-3 rounded-xl hover:bg-white/70">Home</a></li>
+          <li><a href="#skills" class="px-4 py-3 rounded-xl hover:bg-white/70">Skills</a></li>
+          <li><a href="#education" class="px-4 py-3 rounded-xl hover:bg-white/70">Education</a></li>
+          <li><a href="#contact"
+              class="mx-2 px-4 py-2 rounded-xl bg-primary text-white hover:bg-blue-600 transition">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid bg-[size:20px_20px]"></div>
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="space-y-6 section-fade-in">
+          <p class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white/70 px-3 py-1 text-sm">
+            <span class="inline-block h-2 w-2 rounded-full bg-primary animate-pulse"></span> Hello, I'm
+          </p>
+          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-400 to-accent">Aryan
+              Chourasia</span>
+          </h1>
+          <p class="text-xl text-gray-700">Student • Aspiring Developer • Python • Web • Java • Design</p>
+          <p class="text-lg max-w-xl">Curious builder passionate about modern web, clean UI, and cultural-tech
+            storytelling, crafting projects with impact and polish.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#education"
+              class="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white shadow-md hover:shadow-lg transition tilt">
+              View Achievements
+              <span class="transition-transform group-hover:translate-x-0.5">→</span>
+            </a>
+            <a href="#contact"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white transition">
+              Get In Touch
+            </a>
+          </div>
+        </div>
+
+        <div class="flex justify-center md:justify-end">
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-full bg-glow blur-xl opacity-70 animate-pulseGlow"></div>
+            <div
+              class="relative w-56 h-56 md:w-72 md:h-72 rounded-full bg-white/70 backdrop-blur ring-4 ring-primary/30 shadow-xl flex items-center justify-center overflow-hidden">
+              <!-- Replace src with actual avatar -->
+              <svg width="80" height="80" viewBox="0 0 24 24" class="text-gray-400" fill="none" stroke="currentColor"
+                stroke-width="1.2">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature pills -->
+      <div class="mt-12 flex flex-wrap gap-3">
+        <span class="px-3 py-1 rounded-full bg-white/70 border text-sm">React-ready UI</span>
+        <span class="px-3 py-1 rounded-full bg-white/70 border text-sm">Clean semantics</span>
+        <span class="px-3 py-1 rounded-full bg-white/70 border text-sm">A11y-friendly</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20 bg-white/60">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center mb-12">Core Skills</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Skill card -->
+        <article class="group rounded-2xl border bg-white/80 backdrop-blur shadow hover:shadow-xl transition tilt p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">Python</h3>
+            <span class="text-sm text-primary/80">90%</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+            <div
+              class="h-full w-[90%] bg-gradient-to-r from-primary via-cyan-400 to-accent bg-[length:200%_100%] animate-shine">
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-gray-600">Data scripts, backend utilities, and quick prototyping.</p>
+        </article>
+
+        <article class="group rounded-2xl border bg-white/80 backdrop-blur shadow hover:shadow-xl transition tilt p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">Frontend (HTML, CSS, JS)</h3>
+            <span class="text-sm text-primary/80">75%</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+            <div
+              class="h-full w-[75%] bg-gradient-to-r from-primary via-purple-400 to-accent bg-[length:200%_100%] animate-shine">
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-gray-600">Responsive UIs, animations, and accessibility-first builds.</p>
+        </article>
+
+        <article class="group rounded-2xl border bg-white/80 backdrop-blur shadow hover:shadow-xl transition tilt p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">Java</h3>
+            <span class="text-sm text-primary/80">70%</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+            <div
+              class="h-full w-[70%] bg-gradient-to-r from-primary via-indigo-400 to-accent bg-[length:200%_100%] animate-shine">
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-gray-600">OOP fundamentals and CLI projects.</p>
+        </article>
+
+        <article class="group rounded-2xl border bg-white/80 backdrop-blur shadow hover:shadow-xl transition tilt p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">Graphic Design</h3>
+            <span class="text-sm text-primary/80">85%</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+            <div
+              class="h-full w-[85%] bg-gradient-to-r from-primary via-pink-400 to-accent bg-[length:200%_100%] animate-shine">
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-gray-600">Brand assets, posters, and UI mockups.</p>
+        </article>
+
+        <article class="group rounded-2xl border bg-white/80 backdrop-blur shadow hover:shadow-xl transition tilt p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">SQL</h3>
+            <span class="text-sm text-primary/80">60%</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+            <div
+              class="h-full w-[60%] bg-gradient-to-r from-primary via-emerald-400 to-accent bg-[length:200%_100%] animate-shine">
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-gray-600">Relational modeling and queries.</p>
+        </article>
+
+        <article class="group rounded-2xl border bg-white/80 backdrop-blur shadow hover:shadow-xl transition tilt p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">Photography</h3>
+            <span class="text-sm text-primary/80">70%</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+            <div
+              class="h-full w-[70%] bg-gradient-to-r from-primary via-amber-400 to-accent bg-[length:200%_100%] animate-shine">
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-gray-600">Composition, color, and edits.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center mb-12">Education & Achievements</h2>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-semibold mb-6">Journey</h3>
+          <div class="relative">
+            <div
+              class="absolute left-1/2 -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/40 to-accent/40 hidden sm:block">
+            </div>
+
+            <div class="sm:grid sm:grid-cols-2 sm:gap-10">
+              <div class="sm:col-start-1 sm:text-right">
+                <div class="relative mb-10 sm:mb-16">
+                  <span
+                    class="hidden sm:block absolute -right-[9px] top-2 h-5 w-5 rounded-full bg-white ring-4 ring-primary/40"></span>
+                  <p class="text-sm text-gray-500">2024 - 2028</p>
+                  <h4 class="text-xl font-semibold mt-1">B.Tech (IT)</h4>
+                  <p class="text-gray-600 italic">SATI, Vidisha</p>
+                </div>
+              </div>
+
+              <div class="sm:col-start-2">
+                <div class="relative mb-10 sm:mb-16">
+                  <span
+                    class="hidden sm:block absolute -left-[9px] top-2 h-5 w-5 rounded-full bg-white ring-4 ring-accent/40"></span>
+                  <p class="text-sm text-gray-500">2011 - 2023</p>
+                  <h4 class="text-xl font-semibold mt-1">Higher Secondary</h4>
+                  <p class="text-gray-600 italic">Bharat Jyoti H.S. School, Mandla</p>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    <span
+                      class="inline-flex items-center rounded-full bg-green-100 text-green-700 text-xs px-2 py-1">10th:
+                      95%</span>
+                    <span
+                      class="inline-flex items-center rounded-full bg-blue-100 text-blue-700 text-xs px-2 py-1">12th:
+                      88%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-semibold mb-6">Certifications & Experience</h3>
+          <div class="grid gap-6">
+            <div class="rounded-2xl border bg-white/70 backdrop-blur p-6 shadow">
+              <h4 class="text-lg font-semibold mb-3">Key Certifications</h4>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-accent"></span> IIT Indore
+                  Certificate (x2)</li>
+                <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-primary"></span> IBM Java
+                  Certificate</li>
+                <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-cyan-400"></span> AI Internship
+                  with Python</li>
+              </ul>
+            </div>
+
+            <div class="rounded-2xl border bg-white/70 backdrop-blur p-6 shadow">
+              <h4 class="text-lg font-semibold mb-3">Experience (Fresher)</h4>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Workshops and online events for core dev skills.</li>
+                <li>Active in IIT techfests and technical events.</li>
+                <li>Personal projects applying learned skills.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-white/60">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center mb-12">Get In Touch</h2>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="rounded-2xl border bg-white/80 backdrop-blur p-6 shadow">
+          <div class="space-y-4">
+            <p class="text-lg">Open to new opportunities and collaborations.</p>
+            <div class="flex items-center gap-3">
+              <span aria-hidden="true">📞</span>
+              <a href="tel:+919340210745" class="hover:underline">+91 93402 10745</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span aria-hidden="true">📧</span>
+              <a href="mailto:aryanchourasia103@gmail.com" class="hover:underline">aryanchourasia103@gmail.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span aria-hidden="true">📍</span>
+              <p>Shri Ram Ward, Mandla</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="rounded-2xl border bg-white/80 backdrop-blur p-6 shadow space-y-4"
+          onsubmit="event.preventDefault(); handleSubmit();">
+          <div class="relative">
+            <input id="name" name="name" type="text" required
+              class="peer w-full border rounded-lg p-3 pt-5 focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder=" " autocomplete="name">
+            <label for="name"
+              class="pointer-events-none absolute left-3 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm">Your
+              Name</label>
+          </div>
+
+          <div class="relative">
+            <input id="email" name="email" type="email" required
+              class="peer w-full border rounded-lg p-3 pt-5 focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder=" " autocomplete="email">
+            <label for="email"
+              class="pointer-events-none absolute left-3 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm">Your
+              Email</label>
+          </div>
+
+          <div class="relative">
+            <textarea id="message" name="message" rows="4" required
+              class="peer w-full border rounded-lg p-3 pt-5 focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder=" "></textarea>
+            <label for="message"
+              class="pointer-events-none absolute left-3 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm">Your
+              Message</label>
+          </div>
+
+          <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit"
+            class="w-full px-6 py-3 rounded-xl bg-accent text-white hover:bg-orange-700 transition">Send
+            Message</button>
+
+          <p id="formStatus" class="hidden text-sm"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 text-center text-gray-600">
+    <p>&copy; 2025 Aryan Chourasia. Built with HTML and Tailwind CSS.</p>
+  </footer>
+
+  <script>
+    function handleSubmit() {
+      const status = document.getElementById('formStatus');
+      status.className = 'block text-sm mt-2 text-green-600';
+      status.textContent = 'Message sent! (Demo)';
+      setTimeout(() => { status.className = 'hidden'; }, 3000);
+    }
+
+    // Intersection reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('opacity-100', 'translate-y-0'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.section-fade-in').forEach(el => {
+        el.classList.add('opacity-0', 'translate-y-3', 'transition', 'duration-700');
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+
+</html>
+```

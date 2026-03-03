@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML & CSS — Yash Dubey</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="loader" id="loader"><div class="loader-inner"><div class="loader-brand">YD<span>.</span></div><div class="loader-text">Loading...</div><div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div></div></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">YD<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a>
+  </div>
+
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="skill-page-hero-content">
+      <a href="../index.html#skills" class="skill-page-back">← Back to Skills</a>
+      <span class="skill-page-emoji">🌐</span>
+      <h1 class="skill-page-title gradient-text">HTML & CSS</h1>
+      <p class="skill-page-desc">Building responsive, animated, and beautiful web interfaces from scratch. Every page you see in this portfolio was hand-coded with HTML and CSS.</p>
+      <div class="skill-level-display">
+        <div class="skill-level-bar"><div class="skill-level-fill" data-width="85"></div></div>
+        <span class="skill-level-label">85% — Advanced</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Knowledge</span><h2 class="section-title">What I Know</h2></div>
+      <div class="know-list">
+        <div class="know-item reveal"><span>📐</span> Flexbox & Grid</div>
+        <div class="know-item reveal"><span>📱</span> Responsive Design</div>
+        <div class="know-item reveal"><span>✨</span> CSS Animations</div>
+        <div class="know-item reveal"><span>🎨</span> CSS Variables</div>
+        <div class="know-item reveal"><span>🌗</span> Dark/Light Themes</div>
+        <div class="know-item reveal"><span>🔲</span> CSS Grid Layouts</div>
+        <div class="know-item reveal"><span>🖱️</span> Hover Transitions</div>
+        <div class="know-item reveal"><span>📦</span> Semantic HTML5</div>
+        <div class="know-item reveal"><span>🎯</span> Pseudo-elements</div>
+        <div class="know-item reveal"><span>⚡</span> Three.js Integration</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Projects</span><h2 class="section-title">Web Projects</h2></div>
+      <div class="sp-grid-3">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/portfolio-thumb.png" alt="Portfolio"> -->
+            <span>🌐</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">HTML · CSS · JS · Three.js</span>
+            <h4>This Portfolio</h4>
+            <p>This very portfolio website — 3D animations with Three.js, dark/light mode, individual skill pages, scroll animations, and full mobile responsiveness.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+              <a href="../index.html" class="btn btn-sm btn-outline">Live →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/web2-thumb.png" alt="Web Project 2"> -->
+            <span>🎨</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">HTML · CSS</span>
+            <h4>CSS Animation Experiments</h4>
+            <p>A collection of pure CSS animations — loaders, hover effects, card transitions, and scroll-triggered reveals built from scratch.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/web3-thumb.png" alt="Web Project 3"> -->
+            <span>📱</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">HTML · CSS · Responsive</span>
+            <h4>Responsive Layout Projects</h4>
+            <p>Responsive web layouts built as practice — landing pages, dashboards, and multi-column grids that work on all screen sizes.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-logo">YD<span>.</span></div><p>Yash Dubey · B.Tech IT · SATI Vidisha</p><div class="footer-socials"><a href="../index.html">Home</a><a href="../index.html#skills">All Skills</a></div></div></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

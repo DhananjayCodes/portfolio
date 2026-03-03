@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python — Yash Dubey</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="loader" id="loader"><div class="loader-inner"><div class="loader-brand">YD<span>.</span></div><div class="loader-text">Loading...</div><div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div></div></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">YD<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a>
+  </div>
+
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="skill-page-hero-content">
+      <a href="../index.html#skills" class="skill-page-back">← Back to Skills</a>
+      <span class="skill-page-emoji">🐍</span>
+      <h1 class="skill-page-title gradient-text">Python</h1>
+      <p class="skill-page-desc">My first serious programming language — used for scripting, automation, backend development, and data processing. The foundation of my coding journey.</p>
+      <div class="skill-level-display">
+        <div class="skill-level-bar"><div class="skill-level-fill" data-width="80"></div></div>
+        <span class="skill-level-label">80% — Intermediate</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Knowledge</span><h2 class="section-title">What I Know</h2></div>
+      <div class="know-list">
+        <div class="know-item reveal"><span>📦</span> OOP & Classes</div>
+        <div class="know-item reveal"><span>📁</span> File I/O</div>
+        <div class="know-item reveal"><span>🌐</span> Flask (Basics)</div>
+        <div class="know-item reveal"><span>🗄️</span> SQLite with Python</div>
+        <div class="know-item reveal"><span>🤖</span> Automation Scripts</div>
+        <div class="know-item reveal"><span>📊</span> List Comprehensions</div>
+        <div class="know-item reveal"><span>🔧</span> Libraries: os, sys, re</div>
+        <div class="know-item reveal"><span>🌍</span> HTTP Requests</div>
+        <div class="know-item reveal"><span>🧪</span> Error Handling</div>
+        <div class="know-item reveal"><span>🔄</span> Functions & Lambdas</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Projects</span><h2 class="section-title">Python Projects</h2></div>
+      <div class="sp-grid-3">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🤖</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">Python · Automation</span>
+            <h4>Automation Script</h4>
+            <p>A Python script that automates repetitive file management tasks — renaming, sorting, and organizing files automatically.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🌐</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">Python · Flask</span>
+            <h4>Flask Mini App</h4>
+            <p>A simple web application built with Flask demonstrating routing, templates, and form handling.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+              <!-- REPLACE # with your live demo if hosted -->
+              <a href="#" target="_blank" class="btn btn-sm btn-outline">Live Demo →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🎮</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">Python · Game Logic</span>
+            <h4>Python Game Scripts</h4>
+            <p>Python scripts used to prototype game logic and algorithms before implementing them in Godot's GDScript.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Code</span><h2 class="section-title">Sample Python</h2></div>
+      <div style="max-width:700px;margin:0 auto" class="reveal">
+        <div class="code-block">
+          <span class="code-lang">Python</span>
+<pre># File organizer automation script
+import os
+import shutil
+
+FOLDERS = {
+    'Images': ['.jpg', '.jpeg', '.png', '.gif', '.webp'],
+    'Videos': ['.mp4', '.mov', '.avi', '.mkv'],
+    'Documents': ['.pdf', '.docx', '.txt', '.xlsx'],
+    'Code': ['.py', '.js', '.html', '.css', '.gd'],
+}
+
+def organize_folder(path):
+    for filename in os.listdir(path):
+        ext = os.path.splitext(filename)[1].lower()
+        for folder, extensions in FOLDERS.items():
+            if ext in extensions:
+                dest = os.path.join(path, folder)
+                os.makedirs(dest, exist_ok=True)
+                shutil.move(os.path.join(path, filename), dest)
+                print(f"Moved {filename} → {folder}/")
+                break
+
+organize_folder(os.path.expanduser("~/Downloads"))</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-logo">YD<span>.</span></div><p>Yash Dubey · B.Tech IT · SATI Vidisha</p><div class="footer-socials"><a href="../index.html">Home</a><a href="../index.html#skills">All Skills</a><a href="https://github.com/yourusername" target="_blank">GitHub</a></div></div></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

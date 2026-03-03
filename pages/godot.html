@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Godot Engine — Yash Dubey</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="loader" id="loader"><div class="loader-inner"><div class="loader-brand">YD<span>.</span></div><div class="loader-text">Loading...</div><div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div></div></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">YD<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a><a href="../index.html#skills">Skills</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="skill-page-hero-content">
+      <a href="../index.html#skills" class="skill-page-back">← Back to Skills</a>
+      <span class="skill-page-emoji">🎮</span>
+      <h1 class="skill-page-title gradient-text">Godot Engine</h1>
+      <p class="skill-page-desc">Building 2D and 3D games with GDScript — from platformers to full 3D adventures with physics, animation systems, and custom Blender assets.</p>
+      <div class="skill-level-display">
+        <div class="skill-level-bar"><div class="skill-level-fill" data-width="78"></div></div>
+        <span class="skill-level-label">78% — Intermediate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT I KNOW -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Knowledge</span>
+        <h2 class="section-title">What I Know</h2>
+      </div>
+      <div class="know-list">
+        <div class="know-item reveal"><span>🎮</span> GDScript Scripting</div>
+        <div class="know-item reveal"><span>🏃</span> 2D Platformer Mechanics</div>
+        <div class="know-item reveal"><span>🌍</span> 3D World Building</div>
+        <div class="know-item reveal"><span>⚡</span> Physics & Collision</div>
+        <div class="know-item reveal"><span>🎬</span> AnimationPlayer & Trees</div>
+        <div class="know-item reveal"><span>👾</span> Enemy AI (State Machines)</div>
+        <div class="know-item reveal"><span>💡</span> Lighting & Environment</div>
+        <div class="know-item reveal"><span>📦</span> Blender → Godot Import</div>
+        <div class="know-item reveal"><span>🔊</span> Audio Bus & SFX</div>
+        <div class="know-item reveal"><span>🎯</span> Signals & Nodes</div>
+        <div class="know-item reveal"><span>🗺️</span> TileMap / GridMap</div>
+        <div class="know-item reveal"><span>💾</span> Save/Load System</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Projects</span>
+        <h2 class="section-title">Games I've Built</h2>
+        <p class="section-sub">Click on any game to view screenshots, videos & source code</p>
+      </div>
+      <div class="sp-grid-2">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD your 2D game screenshot: <img src="../assets/images/game2d-thumb.png" alt="2D Platformer"> -->
+            <!-- ADD your gameplay video: <video src="../assets/videos/game2d.mp4" loop muted autoplay></video> -->
+            <span>🎮</span>
+            <div class="play-overlay" onclick="openVideo('YOUR_VIDEO_URL_OR_FILE')">
+              <div class="play-btn">▶</div>
+            </div>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Godot 4 · GDScript · 2D</span>
+            <h4>2D Platformer Game</h4>
+            <p>A complete 2D platformer with custom physics, multiple enemy types with AI, collectible coins, health system, multiple levels, and a save/load system. Built entirely in Godot 4 using GDScript.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your actual GitHub repo link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub Repo →</a>
+              <!-- REPLACE # with your itch.io or game link if you have one -->
+              <a href="#" target="_blank" class="btn btn-sm btn-outline">Play Online →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD your 3D game screenshot: <img src="../assets/images/game3d-thumb.png" alt="3D Game"> -->
+            <!-- ADD your gameplay video: <video src="../assets/videos/game3d.mp4" loop muted autoplay></video> -->
+            <span>🌍</span>
+            <div class="play-overlay" onclick="openVideo('YOUR_VIDEO_URL_OR_FILE')">
+              <div class="play-btn">▶</div>
+            </div>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Godot 4 · GDScript · 3D</span>
+            <h4>3D Adventure Game</h4>
+            <p>A 3D exploration and adventure game built with custom 3D assets made in Blender. Features dynamic lighting, a third-person camera system, environmental storytelling, and immersive sound design.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your actual GitHub repo link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub Repo →</a>
+              <!-- REPLACE # with your itch.io or game link if you have one -->
+              <a href="#" target="_blank" class="btn btn-sm btn-outline">Play Online →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Gallery</span>
+        <h2 class="section-title">Screenshots</h2>
+        <p class="section-sub">Add your game screenshots below by replacing the placeholder text with img tags</p>
+      </div>
+      <div class="sp-grid-3">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/screen1.png" alt="Screenshot 1"> -->
+            <span>📸</span>
+          </div>
+          <div class="asset-info">
+            <h4>2D Level Design</h4>
+            <p>Screenshot of a level from the 2D platformer showing tilemap design and enemy placement.</p>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/screen2.png" alt="Screenshot 2"> -->
+            <span>📸</span>
+          </div>
+          <div class="asset-info">
+            <h4>3D Environment</h4>
+            <p>Screenshot of the 3D game world with custom Blender assets and dynamic lighting.</p>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/screen3.png" alt="Screenshot 3"> -->
+            <span>📸</span>
+          </div>
+          <div class="asset-info">
+            <h4>Enemy AI in Action</h4>
+            <p>Demonstration of the enemy state machine and patrol/attack behavior.</p>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/screen4.png" alt="Screenshot 4"> -->
+            <span>📸</span>
+          </div>
+          <div class="asset-info">
+            <h4>Godot Editor</h4>
+            <p>The Godot editor scene tree showing node structure and scripting setup.</p>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/screen5.png" alt="Screenshot 5"> -->
+            <span>📸</span>
+          </div>
+          <div class="asset-info">
+            <h4>HUD & UI Design</h4>
+            <p>In-game HUD with health bar, coin counter, and level UI.</p>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/screen6.png" alt="Screenshot 6"> -->
+            <span>📸</span>
+          </div>
+          <div class="asset-info">
+            <h4>Animation System</h4>
+            <p>AnimationTree setup for player character with blend spaces and transitions.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE SNIPPET -->
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Code</span>
+        <h2 class="section-title">Sample GDScript</h2>
+      </div>
+      <div style="max-width:700px;margin:0 auto" class="reveal">
+        <div class="code-block">
+          <span class="code-lang">GDScript</span>
+<pre># Player Controller — 2D Platformer
+extends CharacterBody2D
+
+const SPEED = 200.0
+const JUMP_FORCE = -400.0
+const GRAVITY = 980.0
+
+var health = 3
+
+func _physics_process(delta):
+    # Gravity
+    if not is_on_floor():
+        velocity.y += GRAVITY * delta
+
+    # Horizontal movement
+    var dir = Input.get_axis("ui_left", "ui_right")
+    velocity.x = dir * SPEED
+
+    # Jump
+    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+        velocity.y = JUMP_FORCE
+
+    move_and_slide()
+    update_animation(dir)
+
+func update_animation(dir):
+    if dir != 0:
+        $Sprite2D.flip_h = dir < 0
+        $AnimationPlayer.play("run")
+    elif not is_on_floor():
+        $AnimationPlayer.play("jump")
+    else:
+        $AnimationPlayer.play("idle")</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">YD<span>.</span></div>
+        <p>Yash Dubey · B.Tech IT · SATI Vidisha</p>
+        <div class="footer-socials">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#skills">All Skills</a>
+          <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+  <script>
+    function openVideo(url) {
+      if(!url || url==='YOUR_VIDEO_URL_OR_FILE') { showToast('⚠️ Add your video URL in the source code!'); return; }
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

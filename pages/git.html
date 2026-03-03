@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Git & GitHub — Yash Dubey</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="loader" id="loader"><div class="loader-inner"><div class="loader-brand">YD<span>.</span></div><div class="loader-text">Loading...</div><div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div></div></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">YD<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a>
+  </div>
+
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="skill-page-hero-content">
+      <a href="../index.html#skills" class="skill-page-back">← Back to Skills</a>
+      <span class="skill-page-emoji">🔧</span>
+      <h1 class="skill-page-title gradient-text">Git & GitHub</h1>
+      <p class="skill-page-desc">Version control, collaboration, and open source contribution. All my projects are version-controlled with Git and hosted on GitHub.</p>
+      <div class="skill-level-display">
+        <div class="skill-level-bar"><div class="skill-level-fill" data-width="75"></div></div>
+        <span class="skill-level-label">75% — Intermediate</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Knowledge</span><h2 class="section-title">What I Know</h2></div>
+      <div class="know-list">
+        <div class="know-item reveal"><span>📝</span> git init, add, commit</div>
+        <div class="know-item reveal"><span>🌿</span> Branching & Merging</div>
+        <div class="know-item reveal"><span>🔀</span> Pull Requests</div>
+        <div class="know-item reveal"><span>📤</span> Push & Pull</div>
+        <div class="know-item reveal"><span>⏪</span> Revert & Reset</div>
+        <div class="know-item reveal"><span>🍒</span> Cherry-pick</div>
+        <div class="know-item reveal"><span>📋</span> GitHub Issues</div>
+        <div class="know-item reveal"><span>🔖</span> Tags & Releases</div>
+        <div class="know-item reveal"><span>🌐</span> GitHub Pages Deploy</div>
+        <div class="know-item reveal"><span>📁</span> .gitignore</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Repositories</span><h2 class="section-title">My GitHub Repos</h2><p class="section-sub">Replace the GitHub links with your actual repository URLs</p></div>
+      <div class="sp-grid-3">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🎮</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">GitHub · Godot</span>
+            <h4>2D Platformer Repo</h4>
+            <p>Full source code for the 2D platformer game with proper commit history and README.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">View on GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🌍</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">GitHub · Godot</span>
+            <h4>3D Game Repo</h4>
+            <p>Source code for the 3D adventure game including Blender asset files and Godot project.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">View on GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🌐</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">GitHub · Web</span>
+            <h4>Portfolio Repo</h4>
+            <p>Source code for this portfolio website — open source and available for reference.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">View on GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Reference</span><h2 class="section-title">Commands I Use Daily</h2></div>
+      <div style="max-width:700px;margin:0 auto" class="reveal">
+        <div class="code-block">
+          <span class="code-lang">Bash</span>
+<pre># Daily Git workflow
+git init                      # Start a new repo
+git add .                     # Stage all changes
+git commit -m "feat: message" # Commit with message
+git push origin main          # Push to GitHub
+
+# Branching workflow
+git checkout -b feature/name  # Create & switch branch
+git merge feature/name        # Merge branch
+git branch -d feature/name    # Delete branch
+
+# When things go wrong
+git status                    # Check what changed
+git log --oneline             # See commit history
+git diff                      # See exact changes
+git stash                     # Temporarily save work</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-logo">YD<span>.</span></div><p>Yash Dubey · B.Tech IT · SATI Vidisha</p><div class="footer-socials"><a href="../index.html">Home</a><a href="../index.html#skills">All Skills</a><a href="https://github.com/yourusername" target="_blank">GitHub Profile →</a></div></div></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

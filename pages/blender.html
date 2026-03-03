@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blender — Yash Dubey</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="loader" id="loader"><div class="loader-inner"><div class="loader-brand">YD<span>.</span></div><div class="loader-text">Loading...</div><div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div></div></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">YD<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a>
+  </div>
+
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="skill-page-hero-content">
+      <a href="../index.html#skills" class="skill-page-back">← Back to Skills</a>
+      <span class="skill-page-emoji">🎨</span>
+      <h1 class="skill-page-title gradient-text">Blender</h1>
+      <p class="skill-page-desc">Creating 3D models, environments and characters — from concept to game-ready assets. All 3D work in my Godot games is made with Blender.</p>
+      <div class="skill-level-display">
+        <div class="skill-level-bar"><div class="skill-level-fill" data-width="70"></div></div>
+        <span class="skill-level-label">70% — Intermediate</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Knowledge</span><h2 class="section-title">What I Know</h2></div>
+      <div class="know-list">
+        <div class="know-item reveal"><span>📐</span> Box Modeling</div>
+        <div class="know-item reveal"><span>🔲</span> Subdivision Surfaces</div>
+        <div class="know-item reveal"><span>🎨</span> UV Unwrapping</div>
+        <div class="know-item reveal"><span>🖌️</span> Texture Painting</div>
+        <div class="know-item reveal"><span>💡</span> Lighting (HDRI, Spot, Area)</div>
+        <div class="know-item reveal"><span>🦴</span> Basic Rigging & Armatures</div>
+        <div class="know-item reveal"><span>🎬</span> Keyframe Animation</div>
+        <div class="know-item reveal"><span>📦</span> Export to GLTF for Godot</div>
+        <div class="know-item reveal"><span>🌿</span> Geometry Nodes (Basics)</div>
+        <div class="know-item reveal"><span>✨</span> Cycles / EEVEE Rendering</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Gallery</span><h2 class="section-title">My 3D Work</h2><p class="section-sub">Add your renders by replacing placeholder spans with img tags</p></div>
+      <div class="sp-grid-3">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/blender1.png" alt="3D Model"> -->
+            <span>🏠</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Blender · Game Asset</span>
+            <h4>Environment Props</h4>
+            <p>Low-poly environment props (barrels, crates, rocks) made for the 3D Godot game.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/blender2.png" alt="Character"> -->
+            <span>🧍</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Blender · Character</span>
+            <h4>Game Character Model</h4>
+            <p>Low-poly character model rigged and animated for use in the Godot 3D adventure game.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/blender3.png" alt="Render"> -->
+            <span>🌄</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Blender · Render</span>
+            <h4>Personal Art Render</h4>
+            <p>A personal 3D render created for artistic exploration — lighting and composition practice.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank">View →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/blender4.png" alt="Scene"> -->
+            <span>🌲</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Blender · Environment</span>
+            <h4>Game Level Environment</h4>
+            <p>Full game environment including terrain, trees, and atmospheric effects for the 3D game.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/blender5.png" alt="Weapon"> -->
+            <span>⚔️</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Blender · Prop</span>
+            <h4>Weapon / Item Props</h4>
+            <p>Swords, coins, and collectible items modeled for game use with PBR texturing.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb">
+            <!-- ADD: <img src="../assets/images/blender6.png" alt="Animation"> -->
+            <span>🎬</span>
+          </div>
+          <div class="asset-info">
+            <span class="asset-tag">Blender · Animation</span>
+            <h4>Character Animations</h4>
+            <p>Walk, run, jump, and attack animation cycles exported for Godot's AnimationTree.</p>
+            <div class="asset-links">
+              <a href="#" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-logo">YD<span>.</span></div><p>Yash Dubey · B.Tech IT · SATI Vidisha</p><div class="footer-socials"><a href="../index.html">Home</a><a href="../index.html#skills">All Skills</a><a href="https://github.com/yourusername" target="_blank">GitHub</a></div></div></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

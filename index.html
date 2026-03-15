@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cool Website</title>
+
+    <!-- Tailwind CDN (optional but recommended) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Body fade-in */
+        body {
+            opacity: 0;
+            animation: fadeInBody 1.2s ease forwards;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+        }
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* Glass UI */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
+        }
+        .float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Glow hover effect */
+        .glow:hover {
+            box-shadow: 0 0 20px #3b82f6;
+            transform: scale(1.05);
+        }
+
+        /* Magnetic button */
+        .magnetic {
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<header class="glass p-4 fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 fade-in">
+    <nav class="flex justify-between items-center">
+        <section class="h-screen flex flex-col justify-center items-center text-center px-6 fade-in">
+    <h2 class="text-5xl font-bold mb-4 float">Welcome to My Website</h2>
+    <p class="text-xl mb-6 opacity-80">Built step-by-step with beautiful effects</p>
+
+    <button class="glass glow magnetic px-8 py-3 text-lg font-semibold">
+        Get Started
+    </button>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 p-10 fade-in">
+    <div class="glass p-6 glow">✨ Smooth Animations</div>
+    <div class="glass p-6 glow">🔥 Glassmorphism UI</div>
+    <div class="glass p-6 glow">🎨 Modern Design</div>
+</section>
+
+        <h1 class="text-xl font-bold">My Website</h1>
+        <ul class="flex gap-6">
+            <li><a href="#" class="hover:text-blue-400">Home</a></li>
+            <li><a href="#" class="hover:text-blue-400">About</a></li>
+            <li><a href="#" class="ho ver:text-blue-400">Contact</a></li>
+        </ul>
+    </nav>
+    <script>
+document.querySelectorAll(".magnetic").forEach((btn) => {
+    const strength = 40;
+
+    btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x / strength}px, ${y / strength}px) scale(1.08)`;
+    });
+
+    btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "translate(0,0) scale(1)";
+    });
+});
+</script>
+</body>
+</html>
+
+</header>

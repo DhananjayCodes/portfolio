@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQL — Yash Dubey</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="loader" id="loader"><div class="loader-inner"><div class="loader-brand">DR<span>.</span></div><div class="loader-text">Loading...</div><div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div></div></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">DR<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a>
+  </div>
+
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="skill-page-hero-content">
+      <a href="../index.html#skills" class="skill-page-back">← Back to Skills</a>
+      <span class="skill-page-emoji">🗄️</span>
+      <h1 class="skill-page-title gradient-text">SQL</h1>
+      <p class="skill-page-desc">Designing and querying relational databases. From simple SELECT statements to complex JOINs and database design for real applications.</p>
+      <div class="skill-level-display">
+        <div class="skill-level-bar"><div class="skill-level-fill" data-width="72"></div></div>
+        <span class="skill-level-label">72% — Intermediate</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Knowledge</span><h2 class="section-title">What I Know</h2></div>
+      <div class="know-list">
+        <div class="know-item reveal"><span>📋</span> SELECT, WHERE, ORDER BY</div>
+        <div class="know-item reveal"><span>🔗</span> INNER / LEFT / RIGHT JOIN</div>
+        <div class="know-item reveal"><span>📊</span> GROUP BY & Aggregates</div>
+        <div class="know-item reveal"><span>🏗️</span> CREATE TABLE & Schema Design</div>
+        <div class="know-item reveal"><span>🔑</span> Primary & Foreign Keys</div>
+        <div class="know-item reveal"><span>📝</span> INSERT, UPDATE, DELETE</div>
+        <div class="know-item reveal"><span>🔍</span> Subqueries</div>
+        <div class="know-item reveal"><span>📌</span> Indexes</div>
+        <div class="know-item reveal"><span>💾</span> SQLite with Python</div>
+        <div class="know-item reveal"><span>🔒</span> Constraints (NOT NULL, UNIQUE)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Projects</span><h2 class="section-title">Database Projects</h2></div>
+      <div class="sp-grid-3">
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🏫</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">SQL · Database Design</span>
+            <h4>College Management DB</h4>
+            <p>A full relational database design for a college system — students, courses, grades, faculty, and enrollment with normalized tables and proper constraints.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>🎮</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">SQLite · Python</span>
+            <h4>Game Leaderboard DB</h4>
+            <p>SQLite database integrated with Python for storing game scores, player data, and leaderboard rankings for a simple game project.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="asset-card reveal">
+          <div class="asset-thumb"><span>📊</span></div>
+          <div class="asset-info">
+            <span class="asset-tag">SQL · Queries</span>
+            <h4>SQL Practice Problems</h4>
+            <p>Collection of solved SQL problems ranging from basic queries to advanced JOINs, subqueries, and window functions.</p>
+            <div class="asset-links">
+              <!-- REPLACE # with your GitHub link -->
+              <a href="#" target="_blank" class="btn btn-sm btn-primary">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-tag">Code</span><h2 class="section-title">Sample SQL</h2></div>
+      <div style="max-width:700px;margin:0 auto" class="reveal">
+        <div class="code-block">
+          <span class="code-lang">SQL</span>
+<pre>-- College Management Database
+
+CREATE TABLE students (
+  id       INTEGER PRIMARY KEY AUTOINCREMENT,
+  name     TEXT NOT NULL,
+  roll_no  TEXT UNIQUE NOT NULL,
+  branch   TEXT NOT NULL,
+  year     INTEGER
+);
+
+CREATE TABLE courses (
+  id       INTEGER PRIMARY KEY,
+  name     TEXT NOT NULL,
+  credits  INTEGER,
+  faculty  TEXT
+);
+
+CREATE TABLE enrollments (
+  student_id  INTEGER REFERENCES students(id),
+  course_id   INTEGER REFERENCES courses(id),
+  grade       TEXT,
+  semester    TEXT,
+  PRIMARY KEY (student_id, course_id)
+);
+
+-- Get all students with their courses and grades
+SELECT s.name, s.roll_no, c.name AS course, e.grade
+FROM students s
+JOIN enrollments e ON s.id = e.student_id
+JOIN courses c ON c.id = e.course_id
+WHERE s.branch = 'IT'
+ORDER BY s.name;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-logo">DR<span>.</span></div><p>Yash Dubey · B.Tech IT · SATI Vidisha</p><div class="footer-socials"><a href="../index.html">Home</a><a href="../index.html#skills">All Skills</a><a href="https://github.com/yourusername" target="_blank">GitHub</a></div></div></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Godot Engine — Dhananjay Rawat</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* Extra styles only for this page */
+    .skill-page-hero{min-height:65vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;text-align:center}
+    #skillPageCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    .sph-content{position:relative;z-index:1}
+    .back-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text2);letter-spacing:1px;text-transform:uppercase;border:1px solid var(--border);padding:.5rem 1rem;border-radius:99px;background:var(--surface);margin-bottom:2.5rem;transition:var(--tr)}
+    .back-btn:hover{color:var(--accent);border-color:var(--accent)}
+    .page-emoji{font-size:5rem;display:block;margin-bottom:1rem;animation:floatPage 3s ease-in-out infinite}
+    @keyframes floatPage{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .page-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;margin-bottom:1rem}
+    .page-desc{color:var(--text2);font-size:1.1rem;max-width:600px;margin:0 auto 2rem;line-height:1.7}
+    .level-row{display:inline-flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:.6rem 1.5rem}
+    .level-bar-sp{width:180px;height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+    .level-fill-sp{height:100%;width:0;background:var(--gradient);border-radius:99px;transition:width 1.5s ease}
+    .level-lbl{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent2)}
+
+    /* Sections */
+    .sp-section{padding:5rem 0}
+    .sp-section.alt{background:var(--bg2)}
+
+    /* Know grid */
+    .know-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:.85rem}
+    .know-pill{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem;display:flex;align-items:center;gap:.75rem;font-size:.88rem;transition:var(--tr);font-weight:500}
+    .know-pill:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--card-shadow)}
+    .know-pill span:first-child{font-size:1.3rem}
+
+    /* Game cards */
+    .game-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:var(--tr);margin-bottom:2rem}
+    .game-card:hover{border-color:var(--accent);box-shadow:var(--card-shadow)}
+    .game-card-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .game-card.flip .game-card-inner{direction:rtl}
+    .game-card.flip .game-card-inner>*{direction:ltr}
+    .game-media{position:relative;min-height:380px;overflow:hidden;background:var(--surface2)}
+
+    /* ===================================================
+       HOW TO ADD YOUR GAME SCREENSHOT:
+       - Save your screenshot as game2d.png (for 2D game)
+         or game3d.png (for 3D game)
+       - Put it inside: assets/images/
+       - The <img> tags below already point to the right path
+       - Just add the file and it will show automatically!
+       =================================================== */
+    .game-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+    .game-card:hover .game-media img{transform:scale(1.04)}
+    .game-media video{width:100%;height:100%;object-fit:cover;display:block}
+    .media-placeholder{width:100%;height:100%;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:var(--surface2);border-right:1px solid var(--border)}
+    .media-placeholder-emoji{font-size:5rem}
+    .media-placeholder-text{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--text2);letter-spacing:1px;text-align:center;line-height:1.8}
+    .media-placeholder-text strong{color:var(--accent);display:block;margin-bottom:.5rem}
+    .game-info{padding:3rem;display:flex;flex-direction:column;justify-content:center}
+    .game-tag{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.2rem .6rem;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text2);margin-bottom:1rem}
+    .game-title{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:.75rem}
+    .game-desc{color:var(--text2);line-height:1.75;margin-bottom:1.5rem;font-size:.93rem}
+    .game-features{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+    .game-feature{display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:var(--text2)}
+    .game-feature span:first-child{font-size:1rem;flex-shrink:0}
+    .game-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+
+    /* Screenshots grid */
+    .screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+    .screenshot-item{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--surface2);transition:var(--tr);aspect-ratio:16/9;position:relative}
+    .screenshot-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+    .screenshot-item:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--card-shadow)}
+    .screenshot-item:hover img{transform:scale(1.04)}
+    .screenshot-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;min-height:160px}
+    .screenshot-placeholder span:first-child{font-size:3rem}
+    .screenshot-placeholder p{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text2);letter-spacing:1px;text-align:center;line-height:1.8;padding:0 1rem}
+    .screenshot-label{position:absolute;bottom:.6rem;left:.6rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.15rem .5rem;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--text2)}
+
+    /* Code block */
+    .code-block{background:#0d1117;border:1px solid var(--border);border-radius:12px;padding:1.5rem;overflow-x:auto;position:relative;max-width:750px;margin:0 auto}
+    .code-block pre{font-family:'Space Mono',monospace;font-size:.8rem;line-height:1.75;color:#e8eaf6;white-space:pre}
+    .code-lang{position:absolute;top:.75rem;right:.75rem;background:var(--accent);color:#fff;border-radius:4px;padding:.1rem .5rem;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:1px}
+    [data-theme="light"] .code-block{background:#1e1e2e}
+    [data-theme="light"] .code-block pre{color:#cdd6f4}
+
+    /* Footer for skill pages */
+    .footer{background:var(--surface);border-top:1px solid var(--border);padding:3rem 0}
+    .footer-content{text-align:center}
+    .footer-logo{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:.75rem}
+    .footer-logo span{color:var(--accent)}
+    .footer p{color:var(--text2);margin-bottom:.4rem;font-size:.9rem}
+    .footer-links{display:flex;gap:2rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:.78rem;color:var(--text2);transition:var(--tr)}
+    .footer-links a:hover{color:var(--accent)}
+
+    @media(max-width:968px){
+      .navbar{padding:0 1.5rem}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .game-card-inner,.game-card.flip .game-card-inner{grid-template-columns:1fr;direction:ltr}
+      .game-media{min-height:260px}
+      .media-placeholder{min-height:260px}
+      .game-info{padding:2rem}
+    }
+    @media(max-width:600px){
+      .screenshots-grid{grid-template-columns:1fr 1fr}
+      .know-grid{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-brand">Dhan<span>.</span></div>
+      <div class="loader-text">Loading...</div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo">Dhan<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#skills">All Skills</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#skills">All Skills</a>
+    <a href="#games">Games</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="skill-page-hero">
+    <canvas id="skillPageCanvas"></canvas>
+    <div class="sph-content">
+      <a href="../index.html#skills" class="back-btn">← Back to All Skills</a>
+      <span class="page-emoji">🎮</span>
+      <h1 class="page-title gradient-text">Godot Engine</h1>
+      <p class="page-desc">Building 2D and 3D games with GDScript — from platformers to full 3D adventures with physics, enemy AI, animation systems, and custom Blender assets.</p>
+      <div class="level-row">
+        <div class="level-bar-sp"><div class="level-fill-sp" data-width="78"></div></div>
+        <span class="level-lbl">78% — Intermediate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT I KNOW -->
+  <section class="sp-section alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Knowledge</span>
+        <h2 class="section-title">What I Know in Godot</h2>
+      </div>
+      <div class="know-grid">
+        <div class="know-pill reveal"><span>🎮</span> GDScript Scripting</div>
+        <div class="know-pill reveal"><span>🏃</span> 2D Platformer Mechanics</div>
+        <div class="know-pill reveal"><span>🌍</span> 3D World Building</div>
+        <div class="know-pill reveal"><span>⚡</span> Physics & Collision</div>
+        <div class="know-pill reveal"><span>🎬</span> AnimationPlayer & Trees</div>
+        <div class="know-pill reveal"><span>👾</span> Enemy AI (State Machines)</div>
+        <div class="know-pill reveal"><span>💡</span> Lighting & Environments</div>
+        <div class="know-pill reveal"><span>📦</span> Blender → Godot Import</div>
+        <div class="know-pill reveal"><span>🔊</span> Audio Bus & SFX</div>
+        <div class="know-pill reveal"><span>🎯</span> Signals & Nodes</div>
+        <div class="know-pill reveal"><span>🗺️</span> TileMap / GridMap</div>
+        <div class="know-pill reveal"><span>💾</span> Save & Load System</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section class="sp-section" id="games">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Projects</span>
+        <h2 class="section-title">Games I've Built</h2>
+        <p class="section-sub">Click the image/video area to see your game screenshot · Replace placeholder with your real screenshot</p>
+      </div>
+
+      <!-- =====================================================
+           2D GAME CARD
+           HOW TO ADD YOUR 2D GAME SCREENSHOT:
+           1. Take a screenshot while playing your game
+           2. Rename it to:  game2d.png
+           3. Copy it to:    assets/images/game2d.png
+           4. The placeholder below will automatically be
+              replaced by your real screenshot!
+           ===================================================== -->
+      <div class="game-card reveal" id="game2d">
+        <div class="game-card-inner">
+          <div class="game-media">
+
+            <!-- ─────────────────────────────────────────────
+                 SCREENSHOT: When you add assets/images/game2d.png
+                 delete the <div class="media-placeholder">...</div>
+                 block below and uncomment this line:
+            <img src="../assets/images/game2d.png" alt="2D Platformer Screenshot">
+                 ───────────────────────────────────────────── -->
+
+            <!-- VIDEO: If you also have a gameplay video, delete the
+                 placeholder and uncomment this instead:
+            <video src="../assets/videos/game2d.mp4" loop muted autoplay playsinline></video>
+                 ───────────────────────────────────────────── -->
+
+            <!-- Placeholder shown until you add your screenshot -->
+            <div class="media-placeholder">
+              <span class="media-placeholder-emoji">🎮</span>
+              <div class="media-placeholder-text">
+                <strong>Add your 2D game screenshot here!</strong>
+                Step 1: Take a screenshot of your game<br>
+                Step 2: Rename it to  game2d.png<br>
+                Step 3: Put it in  assets/images/<br>
+                Step 4: Delete this placeholder<br>
+                Step 5: Uncomment the img line above
+              </div>
+            </div>
+
+          </div>
+          <div class="game-info">
+            <span class="game-tag">Godot 4 · GDScript · 2D</span>
+            <!-- REPLACE the title below with your actual game name -->
+            <h2 class="game-title">2D Platformer Game</h2>
+            <p class="game-desc">
+              <!-- REPLACE this description with your actual game description -->
+              A complete 2D platformer built entirely in Godot 4 using GDScript. Features custom physics, multiple enemy types with AI behaviour, collectibles, health system, multiple levels, and a working save/load system.
+            </p>
+            <div class="game-features">
+              <div class="game-feature"><span>⚡</span> Custom Physics Engine</div>
+              <div class="game-feature"><span>👾</span> Enemy AI with State Machine</div>
+              <div class="game-feature"><span>🗺️</span> Multiple Levels via TileMap</div>
+              <div class="game-feature"><span>💾</span> Save / Load System</div>
+              <div class="game-feature"><span>🎬</span> Sprite Animations with AnimationPlayer</div>
+            </div>
+            <div class="game-btns">
+              <!-- REPLACE # below with your actual GitHub repo link for this game -->
+              <a href="#" target="_blank" class="btn btn-primary">GitHub Repo →</a>
+              <!-- REPLACE # below with your itch.io link, or delete this button -->
+              <a href="#" target="_blank" class="btn btn-outline">Play Online →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+           3D GAME CARD
+           HOW TO ADD YOUR 3D GAME SCREENSHOT:
+           1. Take a screenshot while playing your game
+           2. Rename it to:  game3d.png
+           3. Copy it to:    assets/images/game3d.png
+           4. The placeholder below will automatically be
+              replaced by your real screenshot!
+           ===================================================== -->
+      <div class="game-card flip reveal" id="game3d">
+        <div class="game-card-inner">
+          <div class="game-media">
+
+            <!-- ─────────────────────────────────────────────
+                 SCREENSHOT: When you add assets/images/game3d.png
+                 delete the <div class="media-placeholder">...</div>
+                 block and uncomment this line:
+            <img src="../assets/images/game3d.png" alt="3D Game Screenshot">
+                 ───────────────────────────────────────────── -->
+
+            <!-- VIDEO: Or use a gameplay recording:
+            <video src="../assets/videos/game3d.mp4" loop muted autoplay playsinline></video>
+                 ───────────────────────────────────────────── -->
+
+            <!-- Placeholder shown until you add your screenshot -->
+            <div class="media-placeholder">
+              <span class="media-placeholder-emoji">🌍</span>
+              <div class="media-placeholder-text">
+                <strong>Add your 3D game screenshot here!</strong>
+                Step 1: Take a screenshot of your game<br>
+                Step 2: Rename it to  game3d.png<br>
+                Step 3: Put it in  assets/images/<br>
+                Step 4: Delete this placeholder<br>
+                Step 5: Uncomment the img line above
+              </div>
+            </div>
+
+          </div>
+          <div class="game-info">
+            <span class="game-tag">Godot 4 · GDScript · 3D · Blender Assets</span>
+            <!-- REPLACE the title below with your actual 3D game name -->
+            <h2 class="game-title">3D Adventure Game</h2>
+            <p class="game-desc">
+              <!-- REPLACE this description with your actual 3D game description -->
+              A 3D exploration and adventure game built in Godot 4 with custom 3D assets created in Blender. Features a third-person camera system, dynamic lighting, environmental storytelling, and immersive sound design.
+            </p>
+            <div class="game-features">
+              <div class="game-feature"><span>🎨</span> Custom 3D Assets from Blender</div>
+              <div class="game-feature"><span>📷</span> Third-Person Camera System</div>
+              <div class="game-feature"><span>💡</span> Dynamic Lighting & Shadows</div>
+              <div class="game-feature"><span>🌍</span> Open World Environment</div>
+              <div class="game-feature"><span>🔊</span> Spatial Audio & SFX</div>
+            </div>
+            <div class="game-btns">
+              <!-- REPLACE # below with your actual GitHub repo link for this game -->
+              <a href="#" target="_blank" class="btn btn-primary">GitHub Repo →</a>
+              <!-- REPLACE # below with your itch.io link, or delete this button -->
+              <a href="#" target="_blank" class="btn btn-outline">Play Online →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS GALLERY -->
+  <section class="sp-section alt" id="screenshots">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Gallery</span>
+        <h2 class="section-title">Screenshots</h2>
+        <p class="section-sub">
+          Save your screenshots as screen1.png, screen2.png ... screen6.png and put them in assets/images/
+        </p>
+      </div>
+      <div class="screenshots-grid">
+
+        <!-- SCREENSHOT 1 -->
+        <div class="screenshot-item reveal">
+          <!-- DELETE the placeholder div and uncomment the img when you have the file -->
+          <!-- <img src="../assets/images/screen1.png" alt="Screenshot 1"> -->
+          <div class="screenshot-placeholder">
+            <span>📸</span>
+            <p><strong style="color:var(--accent)">screen1.png</strong>Save a screenshot as this filename in assets/images/</p>
+          </div>
+          <span class="screenshot-label">2D Level Design</span>
+        </div>
+
+        <!-- SCREENSHOT 2 -->
+        <div class="screenshot-item reveal">
+          <!-- <img src="../assets/images/screen2.png" alt="Screenshot 2"> -->
+          <div class="screenshot-placeholder">
+            <span>📸</span>
+            <p><strong style="color:var(--accent)">screen2.png</strong>Save a screenshot as this filename in assets/images/</p>
+          </div>
+          <span class="screenshot-label">3D Environment</span>
+        </div>
+
+        <!-- SCREENSHOT 3 -->
+        <div class="screenshot-item reveal">
+          <!-- <img src="../assets/images/screen3.png" alt="Screenshot 3"> -->
+          <div class="screenshot-placeholder">
+            <span>📸</span>
+            <p><strong style="color:var(--accent)">screen3.png</strong>Save a screenshot as this filename in assets/images/</p>
+          </div>
+          <span class="screenshot-label">Enemy AI</span>
+        </div>
+
+        <!-- SCREENSHOT 4 -->
+        <div class="screenshot-item reveal">
+          <!-- <img src="../assets/images/screen4.png" alt="Screenshot 4"> -->
+          <div class="screenshot-placeholder">
+            <span>📸</span>
+            <p><strong style="color:var(--accent)">screen4.png</strong>Save a screenshot as this filename in assets/images/</p>
+          </div>
+          <span class="screenshot-label">Godot Editor</span>
+        </div>
+
+        <!-- SCREENSHOT 5 -->
+        <div class="screenshot-item reveal">
+          <!-- <img src="../assets/images/screen5.png" alt="Screenshot 5"> -->
+          <div class="screenshot-placeholder">
+            <span>📸</span>
+            <p><strong style="color:var(--accent)">screen5.png</strong>Save a screenshot as this filename in assets/images/</p>
+          </div>
+          <span class="screenshot-label">HUD & UI</span>
+        </div>
+
+        <!-- SCREENSHOT 6 -->
+        <div class="screenshot-item reveal">
+          <!-- <img src="../assets/images/screen6.png" alt="Screenshot 6"> -->
+          <div class="screenshot-placeholder">
+            <span>📸</span>
+            <p><strong style="color:var(--accent)">screen6.png</strong>Save a screenshot as this filename in assets/images/</p>
+          </div>
+          <span class="screenshot-label">Animation System</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE SAMPLE -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Code Sample</span>
+        <h2 class="section-title">Sample GDScript</h2>
+        <p class="section-sub">Player controller from the 2D platformer</p>
+      </div>
+      <div class="reveal">
+        <div class="code-block">
+          <span class="code-lang">GDScript</span>
+<pre># Player Controller — 2D Platformer
+extends CharacterBody2D
+
+const SPEED     = 200.0
+const JUMP_VEL  = -420.0
+const GRAVITY   = 980.0
+
+var health = 3
+
+func _physics_process(delta):
+    # Apply gravity when in air
+    if not is_on_floor():
+        velocity.y += GRAVITY * delta
+
+    # Horizontal input
+    var dir = Input.get_axis("ui_left", "ui_right")
+    velocity.x = dir * SPEED
+
+    # Jump
+    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+        velocity.y = JUMP_VEL
+
+    move_and_slide()
+    update_animation(dir)
+
+func update_animation(dir: float):
+    if dir != 0:
+        $Sprite2D.flip_h = dir < 0
+        $AnimationPlayer.play("run")
+    elif not is_on_floor():
+        $AnimationPlayer.play("jump")
+    else:
+        $AnimationPlayer.play("idle")
+
+func take_damage():
+    health -= 1
+    if health <= 0:
+        get_tree().reload_current_scene()</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Dhan<span>.</span></div>
+        <p>Dhananjay Rawat · B.Tech IT · SATI Vidisha</p>
+        <div class="footer-links">
+          <a href="../index.html">← Home</a>
+          <a href="../index.html#skills">All Skills</a>
+          <!-- REPLACE with your real GitHub -->
+          <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

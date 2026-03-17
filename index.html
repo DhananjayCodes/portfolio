@@ -1,111 +1,642 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cool Website</title>
-
-    <!-- Tailwind CDN (optional but recommended) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        /* Body fade-in */
-        body {
-            opacity: 0;
-            animation: fadeInBody 1.2s ease forwards;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-        }
-        @keyframes fadeInBody {
-            to { opacity: 1; }
-        }
-
-        /* Glass UI */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Fade-in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s ease forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Floating animation */
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
-        }
-        .float {
-            animation: float 5s ease-in-out infinite;
-        }
-
-        /* Glow hover effect */
-        .glow:hover {
-            box-shadow: 0 0 20px #3b82f6;
-            transform: scale(1.05);
-        }
-
-        /* Magnetic button */
-        .magnetic {
-            transition: transform 0.2s ease;
-            position: relative;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dhananjay Rawat | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-<header class="glass p-4 fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 fade-in">
-    <nav class="flex justify-between items-center">
-        <section class="h-screen flex flex-col justify-center items-center text-center px-6 fade-in">
-    <h2 class="text-5xl font-bold mb-4 float">Welcome to My Website</h2>
-    <p class="text-xl mb-6 opacity-80">Built step-by-step with beautiful effects</p>
 
-    <button class="glass glow magnetic px-8 py-3 text-lg font-semibold">
-        Get Started
-    </button>
-</section>
-<section class="grid grid-cols-1 md:grid-cols-3 gap-6 p-10 fade-in">
-    <div class="glass p-6 glow">✨ Smooth Animations</div>
-    <div class="glass p-6 glow">🔥 Glassmorphism UI</div>
-    <div class="glass p-6 glow">🎨 Modern Design</div>
-</section>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-        <h1 class="text-xl font-bold">My Website</h1>
-        <ul class="flex gap-6">
-            <li><a href="#" class="hover:text-blue-400">Home</a></li>
-            <li><a href="#" class="hover:text-blue-400">About</a></li>
-            <li><a href="#" class="ho ver:text-blue-400">Contact</a></li>
-        </ul>
-    </nav>
-    <script>
-document.querySelectorAll(".magnetic").forEach((btn) => {
-    const strength = 40;
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-brand">Dhananjay<span>.</span></div>
+      <div class="loader-text">Initializing Portfolio...</div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    </div>
+  </div>
 
-    btn.addEventListener("mousemove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x / strength}px, ${y / strength}px) scale(1.08)`;
-    });
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">Dhananjay<span class="accent">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#design-work">Design</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#timeline">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+      </button>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
 
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "translate(0,0) scale(1)";
-    });
-});
-</script>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#design-work">Design</a>
+    <a href="#projects">Projects</a>
+    <a href="#timeline">Journey</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">🎓 B.Tech IT · 2nd Year · SATI Vidisha</div>
+      <h1 class="hero-title">
+        <span class="hello">Hi, I'm</span>
+        <span class="name gradient-text">Dhananjay Rawat</span>
+      </h1>
+      <div class="hero-typewriter">
+        <span id="typewriter"></span><span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-desc">Aspiring Full Stack Developer, Game Developer & Graphic Designer — crafting digital experiences with code, creativity, and ☕</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work 🚀</a>
+        <a href="#contact" class="btn btn-outline">Let's Talk 💬</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo-container">
+        <div class="photo-ring ring1"></div>
+        <div class="photo-ring ring2"></div>
+        <div class="photo-ring ring3"></div>
+        <div class="photo-wrap">
+          <img src="assets/images/profile.jpg" alt="Dhananjay Rawat"
+               onerror="this.style.display='none'; document.getElementById('photoFallback').style.display='flex'">
+          <div class="photo-fallback" id="photoFallback">Dhan</div>
+        </div>
+        <div class="floating-badge badge1">🎮 Game Dev</div>
+        <div class="floating-badge badge2">🌐 Web Dev</div>
+        <div class="floating-badge badge3">🎨 Designer</div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar reveal">
+    <div class="stat-item">
+      <span class="stat-number" data-target="2">0</span>
+      <span class="stat-label">Years Coding</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="8">0</span>
+      <span class="stat-label">Projects Built</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="8">0</span>
+      <span class="stat-label">Skills</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="100">0</span><span class="stat-pct">%</span>
+      <span class="stat-label">Passion</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">01 — About</span>
+        <h2 class="section-title">Who Am I?</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="about-lead">A passionate <strong>B.Tech IT student</strong> from Samrat Ashok Technological Institute, Vidisha — turning ideas into interactive digital experiences.</p>
+          <p>I'm an aspiring <strong>Full Stack Developer</strong> with a deep love for <strong>game development</strong> in Godot, <strong>3D art</strong> in Blender, and <strong>graphic design</strong> in Canva. My work spans from Python scripting and SQL databases to event posters for real FLUX club events.</p>
+          <p>I believe great software is where <em>engineering meets creativity</em>. My goal: build products people love — and games people can't stop playing.</p>
+          <div class="about-tags">
+            <span>🎓 SATI Vidisha</span>
+            <span>💻 Full Stack Dev</span>
+            <span>🎮 Game Developer</span>
+            <span>🎨 Graphic Designer</span>
+            <span>🌟 FLUX Club Member</span>
+          </div>
+          <a href="#skills" class="btn btn-primary" style="margin-top:2rem;display:inline-block;">Explore My Skills →</a>
+        </div>
+        <div class="about-cards reveal">
+          <div class="info-card">
+            <div class="card-icon">🎯</div>
+            <h4>Current Focus</h4>
+            <p>Full Stack Dev + Godot Game Dev + Canva Design for FLUX</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🎓</div>
+            <h4>Education</h4>
+            <p>B.Tech Information Technology<br>2nd Year — SATI Vidisha, MP</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🚀</div>
+            <h4>Dream</h4>
+            <p>Launch an indie game, build full-stack products & design for big events</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">⚡</div>
+            <h4>Club</h4>
+            <p>Technical Club FLUX · SATI Vidisha<br>Designer & Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <canvas id="skillsCanvas"></canvas>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">02 — Skills</span>
+        <h2 class="section-title">My Arsenal</h2>
+        <p class="section-sub">Click any skill card to explore dedicated projects & assets</p>
+      </div>
+      <div class="skills-grid">
+
+        <a href="pages/python.html" class="skill-card reveal">
+          <div class="skill-glow"></div>
+          <div class="skill-emoji">🐍</div>
+          <h3>Python</h3>
+          <p>Scripting, automation, backend logic & data processing</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+          <span class="skill-pct">80%</span>
+          <span class="explore-hint">View Projects →</span>
+        </a>
+
+        <a href="pages/html-css.html" class="skill-card reveal">
+          <div class="skill-glow"></div>
+          <div class="skill-emoji">🌐</div>
+          <h3>HTML & CSS</h3>
+          <p>Responsive layouts, animations & modern web design</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+          <span class="skill-pct">85%</span>
+          <span class="explore-hint">View Projects →</span>
+        </a>
+
+        <a href="pages/git.html" class="skill-card reveal">
+          <div class="skill-glow"></div>
+          <div class="skill-emoji">🔧</div>
+          <h3>Git & GitHub</h3>
+          <p>Version control, branching, collaboration & open source</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+          <span class="skill-pct">75%</span>
+          <span class="explore-hint">View Repos →</span>
+        </a>
+
+        <a href="pages/godot.html" class="skill-card featured reveal">
+          <div class="skill-glow"></div>
+          <div class="featured-label">⭐ Featured</div>
+          <div class="skill-emoji">🎮</div>
+          <h3>Godot Engine</h3>
+          <p>2D & 3D game dev, GDScript, physics, animation systems</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="78"></div></div>
+          <span class="skill-pct">78%</span>
+          <span class="explore-hint">View Games →</span>
+        </a>
+
+        <a href="pages/blender.html" class="skill-card reveal">
+          <div class="skill-glow"></div>
+          <div class="skill-emoji">🎨</div>
+          <h3>Blender</h3>
+          <p>3D modeling, texturing, rigging, lighting & rendering</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+          <span class="skill-pct">70%</span>
+          <span class="explore-hint">View 3D Work →</span>
+        </a>
+
+        <a href="pages/sql.html" class="skill-card reveal">
+          <div class="skill-glow"></div>
+          <div class="skill-emoji">🗄️</div>
+          <h3>SQL</h3>
+          <p>Database design, queries, joins, indexes & data management</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="72"></div></div>
+          <span class="skill-pct">72%</span>
+          <span class="explore-hint">View Projects →</span>
+        </a>
+
+        <!-- CANVA SKILL CARD -->
+        <a href="pages/canva.html" class="skill-card reveal" style="border-color:rgba(0,196,204,0.3)">
+          <div class="skill-glow" style="background:var(--canva-color,#00c4cc)"></div>
+          <div class="featured-label" style="background:linear-gradient(135deg,#00c4cc,#8b5cf6)">🎨 Design</div>
+          <div class="skill-emoji">🖌️</div>
+          <h3>Canva Design</h3>
+          <p>Event posters, motion graphics & brand design for FLUX club at SATI</p>
+          <div class="skill-bar"><div class="skill-progress" data-width="82" style="background:linear-gradient(135deg,#00c4cc,#8b5cf6)"></div></div>
+          <span class="skill-pct">82%</span>
+          <span class="explore-hint" style="color:#00c4cc">View Design Portfolio →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SHOWCASE -->
+  <section class="design-showcase" id="design-work">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Design Work</span>
+        <h2 class="section-title">Canva & Graphic Design</h2>
+        <p class="section-sub">Real posters & motion graphics made for Technical Club FLUX · SATI Vidisha</p>
+      </div>
+
+      <!-- Scrolling marquee strip -->
+      <div class="marquee-outer reveal">
+        <div class="marquee-track">
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble26.png" alt="RoboRumble Final">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/treasure_to_trustee.png" alt="Treasure to Trustee">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble_1_.png" alt="RoboRumble V1">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/TECHNICAL_CLUB__FLUX_.png" alt="FLUX Services">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble_2_.png" alt="RoboRumble V2">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble(3).png" alt="RoboRumble V3">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble.png" alt="RoboRumble V4">
+          </div>
+          <!-- Duplicates for seamless loop -->
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble26.png" alt="RoboRumble Final">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/Untitled_design.png" alt="Treasure to Trustee">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble_1_.png" alt="RoboRumble V1">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/TECHNICAL_CLUB__FLUX_.png" alt="FLUX Services">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble_2_.png" alt="RoboRumble V2">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble_3_.png" alt="RoboRumble V3">
+          </div>
+          <div class="marquee-item" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/RoboRumble.png" alt="RoboRumble V4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured grid -->
+      <div class="ds-grid reveal">
+        <div class="ds-card ds-card-tall" onclick="location.href='pages/canva.html'">
+          <img src="assets/images/RoboRumble26.png" alt="RoboRumble">
+          <div class="ds-overlay">
+            <span class="ds-tag">Event Poster · 6 Versions</span>
+            <h3>RoboRumble</h3>
+            <p>Robot combat poster series for Technovision 2026 at SATI</p>
+            <span class="ds-btn">View All Versions →</span>
+          </div>
+        </div>
+
+        <div class="ds-right-col">
+          <div class="ds-card" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/Untitled_design.png" alt="Treasure to Trustee">
+            <div class="ds-overlay">
+              <span class="ds-tag">Teaser Poster</span>
+              <h3>Treasure to Trustee</h3>
+              <p>Vintage event teaser poster</p>
+              <span class="ds-btn">View →</span>
+            </div>
+          </div>
+
+          <div class="ds-card" onclick="location.href='pages/canva.html'">
+            <img src="assets/images/TECHNICAL_CLUB__FLUX_.png" alt="FLUX Services">
+            <div class="ds-overlay">
+              <span class="ds-tag">Service Poster</span>
+              <h3>FLUX Web Services</h3>
+              <p>Dark agency-style poster</p>
+              <span class="ds-btn">View →</span>
+            </div>
+          </div>
+
+          <div class="ds-card ds-video-card" id="dsVideoCard">
+            <video src="assets/videos/FLUX_MAKARSANKRANTI_ACCEPTED.mp4"
+                   muted loop playsinline preload="metadata"
+                   id="homepageVideo"></video>
+            <div class="ds-overlay" onclick="location.href='pages/canva.html'">
+              <span class="ds-tag accepted-pill">✅ Motion Graphic</span>
+              <h3>Makar Sankranti</h3>
+              <p>Animated festive video — accepted vs rejected</p>
+              <span class="ds-btn">Watch Both →</span>
+            </div>
+            <div class="video-hover-hint" id="videoHint">▶ Hover to Play</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-cta reveal">
+        <a href="pages/canva.html" class="btn btn-primary">🎨 View Full Design Portfolio →</a>
+        <p>8 designs · 2 motion videos · All for real FLUX events at SATI Vidisha</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">03 — Projects</span>
+        <h2 class="section-title">What I've Built</h2>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="game">🎮 Games</button>
+        <button class="filter-btn" data-filter="web">🌐 Web</button>
+        <button class="filter-btn" data-filter="3d">🎨 3D Art</button>
+        <button class="filter-btn" data-filter="design">🖌️ Design</button>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card reveal" data-cat="game">
+          <div class="project-thumb">
+            <!-- ADD YOUR GAME SCREENSHOT: <img src="assets/images/game2d.png" alt="2D Game"> -->
+            <div class="thumb-placeholder">🎮</div>
+            <div class="project-hover">
+              <a href="pages/godot.html" class="btn btn-sm">View Details →</a>
+            </div>
+            <span class="proj-tag">Godot · GDScript · 2D</span>
+          </div>
+          <div class="project-info">
+            <h3>2D Platformer Game</h3>
+            <p>Full-featured 2D platformer with physics, enemy AI, collectibles & levels in Godot.</p>
+            <div class="proj-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank">GitHub →</a>
+              <a href="pages/godot.html">Details →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-cat="game">
+          <div class="project-thumb">
+            <!-- ADD YOUR GAME SCREENSHOT: <img src="assets/images/game3d.png" alt="3D Game"> -->
+            <div class="thumb-placeholder">🌍</div>
+            <div class="project-hover">
+              <a href="pages/godot.html" class="btn btn-sm">View Details →</a>
+            </div>
+            <span class="proj-tag">Godot · 3D · Blender</span>
+          </div>
+          <div class="project-info">
+            <h3>3D Adventure Game</h3>
+            <p>3D exploration game in Godot with custom Blender assets & dynamic lighting.</p>
+            <div class="proj-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank">GitHub →</a>
+              <a href="pages/godot.html">Details →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-cat="web">
+          <div class="project-thumb">
+            <div class="thumb-placeholder">🌐</div>
+            <div class="project-hover">
+              <a href="pages/html-css.html" class="btn btn-sm">View Details →</a>
+            </div>
+            <span class="proj-tag">HTML · CSS · JS · Three.js</span>
+          </div>
+          <div class="project-info">
+            <h3>This Portfolio</h3>
+            <p>3D animated portfolio with Three.js, dark/light mode & individual skill pages.</p>
+            <div class="proj-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank">GitHub →</a>
+              <a href="pages/html-css.html">Details →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-cat="3d">
+          <div class="project-thumb">
+            <!-- ADD: <img src="assets/images/blender1.png" alt="3D Art"> -->
+            <div class="thumb-placeholder">🎨</div>
+            <div class="project-hover">
+              <a href="pages/blender.html" class="btn btn-sm">View Details →</a>
+            </div>
+            <span class="proj-tag">Blender · 3D Art</span>
+          </div>
+          <div class="project-info">
+            <h3>3D Game Asset Pack</h3>
+            <p>3D models, environments & characters in Blender for Godot projects.</p>
+            <div class="proj-links">
+              <a href="pages/blender.html">View All →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-cat="design">
+          <div class="project-thumb">
+            <img src="assets/images/RoboRumble26.png" alt="RoboRumble Design">
+            <div class="project-hover">
+              <a href="pages/canva.html" class="btn btn-sm">View All Designs →</a>
+            </div>
+            <span class="proj-tag">Canva · Event Poster</span>
+          </div>
+          <div class="project-info">
+            <h3>RoboRumble Poster Series</h3>
+            <p>6 poster versions for the robot combat event at Technovision 2026, FLUX SATI.</p>
+            <div class="proj-links">
+              <a href="pages/canva.html">View Designs →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-cat="design">
+          <div class="project-thumb">
+            <video src="assets/videos/FLUX_MAKARSANKRANTI_ACCEPTED.mp4"
+                   muted loop playsinline
+                   onmouseenter="this.play()"
+                   onmouseleave="this.pause();this.currentTime=0"></video>
+            <div class="project-hover">
+              <a href="pages/canva.html" class="btn btn-sm">Watch Videos →</a>
+            </div>
+            <span class="proj-tag">Canva · Motion Graphic</span>
+          </div>
+          <div class="project-info">
+            <h3>Makar Sankranti Motion Graphic</h3>
+            <p>Animated festive greeting video for FLUX — includes accepted & rejected versions.</p>
+            <div class="proj-links">
+              <a href="pages/canva.html">Watch Both →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section" id="timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">04 — Journey</span>
+        <h2 class="section-title">My Story</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-year">2023</span>
+            <h4>Joined SATI Vidisha 🎓</h4>
+            <p>Started B.Tech IT at Samrat Ashok Technological Institute, Vidisha.</p>
+          </div>
+        </div>
+        <div class="tl-item right reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-year">2023</span>
+            <h4>First Lines of Code 💻</h4>
+            <p>Learned Python and HTML/CSS — built first web pages and scripts.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-year">2024</span>
+            <h4>Joined FLUX Club ⚡</h4>
+            <p>Became a designer & developer at Technical Club FLUX, SATI Vidisha.</p>
+          </div>
+        </div>
+        <div class="tl-item right reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-year">2024</span>
+            <h4>Discovered Game Dev 🎮</h4>
+            <p>Fell in love with Godot Engine. Built my first 2D platformer game.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-year">2024</span>
+            <h4>Into 3D & Design 🎨</h4>
+            <p>Started Blender modeling + Canva design for real FLUX events including RoboRumble.</p>
+          </div>
+        </div>
+        <div class="tl-item right reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-year">2025</span>
+            <h4>Full Stack Journey 🚀</h4>
+            <p>Diving into backend, SQL, Git workflows and full-stack architecture.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card future">
+            <span class="tl-year">Future ✨</span>
+            <h4>The Dream</h4>
+            <p>Launch an indie game, build real-world apps & design for massive events.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <canvas id="contactCanvas"></canvas>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">05 — Contact</span>
+        <h2 class="section-title">Let's Build Together</h2>
+        <p class="section-sub">Open to internships, collabs & cool side projects!</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-links reveal">
+          <!-- REPLACE all placeholder values below with YOUR real info -->
+          <a class="contact-card" href="mailto:dhananjay8645@gmail.com">
+            <span>📧</span>
+            <div><strong>Email</strong><span>dhananjay8645@gmail.com</span></div>
+          </a>
+          <a class="contact-card" href="https://linkedin.com/in/yourusername" target="_blank">
+            <span>💼</span>
+            <div><strong>LinkedIn</strong><span>linkedin.com/in/dhananjay</span></div>
+          </a>
+          <a class="contact-card" href="https://github.com/yourusername" target="_blank">
+            <span>🐙</span>
+            <div><strong>GitHub</strong><span>github.com/dhananjay</span></div>
+          </a>
+          <div class="contact-card no-link">
+            <span>🎓</span>
+            <div><strong>College</strong><span>SATI Vidisha, MP, India</span></div>
+          </div>
+          <div class="contact-card no-link">
+            <span>⚡</span>
+            <div><strong>Club</strong><span>Technical Club FLUX · SATI</span></div>
+          </div>
+        </div>
+        <form class="contact-form reveal" onsubmit="handleForm(event)">
+          <div class="field-group">
+            <input type="text" placeholder=" " required/>
+            <label>Your Name</label>
+          </div>
+          <div class="field-group">
+            <input type="email" placeholder=" " required/>
+            <label>Your Email</label>
+          </div>
+          <div class="field-group">
+            <input type="text" placeholder=" " required/>
+            <label>Subject</label>
+          </div>
+          <div class="field-group">
+            <textarea rows="4" placeholder=" " required></textarea>
+            <label>Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Send Message 🚀</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Dhan<span>.</span></div>
+        <p>Dhananjay Rawat · B.Tech IT · SATI Vidisha</p>
+        <p class="footer-note">Built with 💜 Three.js · HTML · CSS · Vanilla JS</p>
+        <div class="footer-socials">
+          <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+          <a href="mailto:dhananjay8645@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">✅ Done!</div>
+  <script src="js/main.js"></script>
 </body>
 </html>
-
-</header>
